@@ -1,0 +1,19 @@
+version: '2'
+services:
+  portal:
+    build: .
+    image: lucasferreira/liferay
+    depends_on:
+     - postgres
+    ports:
+     - "8080:8080"
+     - "11311:11311"
+    network_mode: "host"
+  postgres:
+    image: postgres
+    ports:
+     - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=my-secret-pw
+      - POSTGRES_USER=liferay
+      - POSTGRES_DB=lportal
